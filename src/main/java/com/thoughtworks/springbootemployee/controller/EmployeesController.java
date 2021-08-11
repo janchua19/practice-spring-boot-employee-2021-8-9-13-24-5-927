@@ -43,20 +43,22 @@ public class EmployeesController {
 
     @GetMapping(path = "/{employeeId}")
     public Employee findById(@PathVariable Integer employeeId) {
-        return employees
-                .stream()
-                .filter(employee -> employee.getId().equals(employeeId))
-                .findFirst()
-                .orElse(null);
+//        return employees
+//                .stream()
+//                .filter(employee -> employee.getId().equals(employeeId))
+//                .findFirst()
+//                .orElse(null);
+        return employeeService.findById(1);
     }
 
     @GetMapping(params = {"pageIndex", "pageSize"})
     public List<Employee> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
-        return employees
-                .stream()
-                .skip((pageIndex - 1) * pageSize)
-                .limit(pageSize)
-                .collect(Collectors.toList());
+//        return employees
+//                .stream()
+//                .skip((pageIndex - 1) * pageSize)
+//                .limit(pageSize)
+//                .collect(Collectors.toList());
+        return employeeService.findEmployeesByPagination(1,5);
     }
 
     @GetMapping(params = "gender")
