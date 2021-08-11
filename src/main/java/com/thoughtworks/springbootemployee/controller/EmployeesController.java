@@ -39,7 +39,7 @@ public class EmployeesController {
     }
 
     @GetMapping(params = {"pageIndex", "pageSize"})
-    public List<Employee> findEmployeesByPagination (@RequestParam Integer pageIndex, @RequestParam Integer pageSize){
+    public List<Employee> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
         return employees
                 .stream()
                 .skip((pageIndex - 1) * pageSize)
@@ -51,6 +51,15 @@ public class EmployeesController {
     @GetMapping(params = "gender")
     public List<Employee> findEmployeeByGender(@RequestParam(required = true) String gender) {
         return employees.stream().filter(employee -> employee.getGender().equalsIgnoreCase(gender)).collect(Collectors.toList());
+    }
+
+
+    @PostMapping
+    public void addEmployee(@RequestBody Employee employee) {
+        Employee newEmployee = new Employee(employees.size() + 1, employee.getName(), employee.getAge(),
+                employee.getGender(), employee.getSalary());
+        employees.add(newEmployee);
+
     }
 
 }
