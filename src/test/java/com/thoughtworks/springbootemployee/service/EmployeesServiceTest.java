@@ -15,6 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeesServiceTest {
@@ -126,5 +127,11 @@ public class EmployeesServiceTest {
         employees.add(newEmployee);
         //then
         assertEquals(employees.size(), newEmployee.getId());
+        //GIVEN
+//        when(employeeRepository.(employeeRequest)).thenReturn(employeeRequest);
+//        //WHEN
+//        Employee actual = employeeService.create(employeeRequest);
+//        //THEN
+//        Assertions.assertEquals(1, actual.getId());
     }
 }
