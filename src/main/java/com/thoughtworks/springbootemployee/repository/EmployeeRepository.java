@@ -3,8 +3,7 @@ package com.thoughtworks.springbootemployee.repository;
 
 import com.thoughtworks.springbootemployee.model.Employee;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,5 +54,37 @@ public class EmployeeRepository {
                 employee.getGender(), employee.getSalary());
         employees.add(newEmployee);
 
+    }
+
+    public Employee updateEmployee(Integer employeeId, Employee employeeToBeUpdated) {
+        return employees
+                .stream()
+                .filter(employee -> employee.getId().equals(employeeId))
+                .findFirst()
+                .map(employee -> updateEmployeeInformation(employee, employeeToBeUpdated))
+                .orElse(null);
+    }
+
+    private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
+        if (employeeToBeUpdated.getName() != null) {
+            employee.setName(employeeToBeUpdated.getName());
+        }
+        if (employeeToBeUpdated.getAge() != null) {
+            employee.setAge(employeeToBeUpdated.getAge());
+        }
+        if (employeeToBeUpdated.getGender() != null) {
+            employee.setGender(employeeToBeUpdated.getGender());
+        }
+        if (employeeToBeUpdated.getSalary() != null) {
+            employee.setSalary(employeeToBeUpdated.getSalary());
+        }
+        return employee;
+    }
+
+    public void deleteEmployee ( Integer employeeId){
+        employees
+                .stream().filter(employee -> employee.getId().equals(employeeId))
+                .findFirst()
+                .ifPresent(employees :: remove);
     }
 }

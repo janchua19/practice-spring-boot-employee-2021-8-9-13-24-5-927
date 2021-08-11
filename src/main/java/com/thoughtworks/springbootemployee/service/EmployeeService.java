@@ -4,9 +4,7 @@ import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,5 +39,14 @@ public class EmployeeService {
 
     public void addEmployee(@RequestBody Employee employee) {
         employeeRepository.addEmployee(employee);
+    }
+
+    public Employee updateEmployee(@PathVariable Integer employeeId, @RequestBody Employee employeeToBeUpdated) {
+        return employeeRepository.updateEmployee(employeeId, employeeToBeUpdated);
+    }
+
+
+    public void deleteEmployee (@PathVariable Integer employeeId){
+        employeeRepository.deleteEmployee(employeeId);
     }
 }
