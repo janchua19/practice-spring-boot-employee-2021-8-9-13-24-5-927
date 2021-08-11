@@ -46,20 +46,20 @@ public class EmployeesServiceTest {
 
     }
 
-//    @Test
-//    public void should_return_employee_1_when_retrieveEmployee_given_employee_id(){
-//        //given
-//        List<Employee> employees = new ArrayList<>();
-//        employees.add(new Employee(1, "Ian", 44, "Female", 20000));
-//        employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
-//        given(employeeRepository.findById(1))
-//                .willReturn(employees.get(0));
-//        //when
-//        Employee actualEmployee = employeeService.findById(1);
-//        //then
-//        assertEquals(employees.get(0), actualEmployee);
-//    }
-//
+    @Test
+    public void should_return_employee_1_when_retrieveEmployee_given_employee_id(){
+        //given
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Ian", 44, "Female", 20000));
+        employees.add(new Employee(2, "Adomar", 50, "Male", 1000));
+        given(employeeRepository.findById(1))
+                .willReturn(employees.get(0));
+        //when
+        Employee actualEmployee = employeeService.findById(1);
+        //then
+        assertEquals(employees.get(0), actualEmployee);
+    }
+
 //    @Test
 //    public void should_return_employee_with_id_1_to_5_when_findEmployeeByPagination_given_pageIndex_1_and_pageSize_5() {
 //        //given
