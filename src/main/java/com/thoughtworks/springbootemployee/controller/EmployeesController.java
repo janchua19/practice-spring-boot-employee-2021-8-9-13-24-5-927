@@ -1,13 +1,11 @@
 package com.thoughtworks.springbootemployee.controller;
 
 import com.thoughtworks.springbootemployee.model.Employee;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/employees")
@@ -28,11 +26,25 @@ public class EmployeesController {
     }
 
     @GetMapping(path = "/{employeeId}")
-    public Employee findById(@PathVariable Integer employeeId){
+    public Employee findById(@PathVariable Integer employeeId) {
         return employees
                 .stream()
                 .filter(employee -> employee.getId().equals(employeeId))
                 .findFirst()
                 .orElse(null);
     }
+
+//    @GetMapping(path = "?page={page}&pageSize={pageSize}")
+//    public List<Employee> findEmployeesByPageAndPageSize(@PathVariable Integer page,
+//                                                         @PathVariable Integer pageSize) {
+//
+//     //   return employees.stream().filter(employee -> employees.indexOf(employee) <= page - 1).collect(Collectors.toList());
+//
+//    }
+
+    @GetMapping(params = "gender")
+    public List<Employee> findEmployeeByGender(@RequestParam(required = true) String gender) {
+        return employees.stream().filter(employee -> employee.getGender().equalsIgnoreCase(gender)).collect(Collectors.toList());
+    }
+
 }
