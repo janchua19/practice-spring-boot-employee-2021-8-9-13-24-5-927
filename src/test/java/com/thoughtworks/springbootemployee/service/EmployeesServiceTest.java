@@ -47,7 +47,7 @@ public class EmployeesServiceTest {
     }
 
     @Test
-    public void should_return_employee_1_when_retrieveEmployee_given_employee_id(){
+    public void should_return_employee_when_retrieveEmployee_given_employee_id(){
         //given
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1, "Ian", 44, "Female", 20000));
@@ -60,24 +60,24 @@ public class EmployeesServiceTest {
         assertEquals(employees.get(0), actualEmployee);
     }
 
-//    @Test
-//    public void should_return_employee_with_id_1_to_5_when_findEmployeeByPagination_given_pageIndex_1_and_pageSize_5() {
-//        //given
-//        List<Employee> employees = new ArrayList<>();
-//        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
-//        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
-//        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
-//        employees.add(new Employee(4, "Red", 12, "Male", 20300));
-//        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
-//        employees.add(new Employee(6, "DM", 12, "Male", 25000));
-//        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
-//        given(employeeRepository.findEmployeesByPagination(1, 5))
-//                .willReturn(Collections.singletonList(employees.get(0)));
-//        //when
-//        List<Employee> actualEmployees = employeeService.findEmployeesByPagination(1, 5);
-//        //then
-//        assertEquals(Collections.singletonList(employees.get(0)), actualEmployees);
-//    }
+    @Test
+    public void should_return_employee_with_id_1_to_5_when_findEmployeeByPagination_given_pageIndex_1_and_pageSize_5() {
+        //given
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
+        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
+        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
+        employees.add(new Employee(4, "Red", 12, "Male", 20300));
+        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
+        employees.add(new Employee(6, "DM", 12, "Male", 25000));
+        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
+        given(employeeRepository.findEmployeesByPagination(1, 5))
+                .willReturn(Collections.singletonList(employees.get(0)));
+        //when
+        List<Employee> actualEmployees = employeeService.findEmployeesByPagination(1, 5);
+        //then
+        assertEquals(Collections.singletonList(employees.get(0)), actualEmployees);
+    }
 //
 //    @Test
 //    public void should_return_employee_that_is_male_when_findEmployeeByGender_given_gender() {
