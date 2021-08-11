@@ -108,22 +108,23 @@ public class EmployeesServiceTest {
         assertEquals(Collections.singletonList(employees.get(0)), actualEmployees);
     }
 
-//    @Test
-//    public void should_return_new_employee_added_when__given_gender() {
-//        //given
-//        List<Employee> employees = new ArrayList<>();
-//        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
-//        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
-//        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
-//        employees.add(new Employee(4, "Red", 12, "Male", 20300));
-//        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
-//        employees.add(new Employee(6, "DM", 12, "Male", 25000));
-//        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
-//        given(employeeRepository.findEmployeeByGender("Male"))
-//                .willReturn(Collections.singletonList(employees.get(0)));
-//        //when
-//        List<Employee> actualEmployees = employeeService.findEmployeeByGender("Male");
-//        //then
-//        assertEquals(Collections.singletonList(employees.get(0)), actualEmployees);
-//    }
+    @Test
+    public void should_return_new_employee_added_when_addNewEmployee_given_employee() {
+        //given
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
+        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
+        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
+        employees.add(new Employee(4, "Red", 12, "Male", 20300));
+        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
+        employees.add(new Employee(6, "DM", 12, "Male", 25000));
+        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
+
+
+        //when
+        Employee newEmployee = new Employee(employees.size() + 1, "NewTwo", 22, "Female", 10000);
+        employees.add(newEmployee);
+        //then
+        assertEquals(employees.size(), newEmployee.getId());
+    }
 }
