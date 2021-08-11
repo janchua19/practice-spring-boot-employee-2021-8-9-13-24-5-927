@@ -16,8 +16,12 @@ public class EmployeesController {
     public EmployeesController() {
 
         employees.add(new Employee(1, "Carms", 21, "Female", 1000));
-        employees.add(new Employee(2, "Jan Edward", 12, "Male", 2000));
-
+        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
+        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
+        employees.add(new Employee(4, "Red", 12, "Male", 20300));
+        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
+        employees.add(new Employee(6, "DM", 12, "Male", 25000));
+        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
     }
 
     @GetMapping
@@ -34,13 +38,15 @@ public class EmployeesController {
                 .orElse(null);
     }
 
-//    @GetMapping(path = "?page={page}&pageSize={pageSize}")
-//    public List<Employee> findEmployeesByPageAndPageSize(@PathVariable Integer page,
-//                                                         @PathVariable Integer pageSize) {
-//
-//     //   return employees.stream().filter(employee -> employees.indexOf(employee) <= page - 1).collect(Collectors.toList());
-//
-//    }
+    @GetMapping(params = {"pageIndex", "pageSize"})
+    public List<Employee> findEmployeesByPagination (@RequestParam Integer pageIndex, @RequestParam Integer pageSize){
+        return employees
+                .stream()
+                .skip((pageIndex - 1) * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
+    }
+
 
     @GetMapping(params = "gender")
     public List<Employee> findEmployeeByGender(@RequestParam(required = true) String gender) {
