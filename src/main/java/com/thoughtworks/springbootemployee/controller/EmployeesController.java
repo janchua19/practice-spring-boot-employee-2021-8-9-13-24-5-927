@@ -1,6 +1,8 @@
 package com.thoughtworks.springbootemployee.controller;
 
 import com.thoughtworks.springbootemployee.model.Employee;
+import com.thoughtworks.springbootemployee.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,22 +13,32 @@ import java.util.stream.Collectors;
 @RequestMapping("/employees")
 public class EmployeesController {
 
+
     private List<Employee> employees = new ArrayList<>();
 
-    public EmployeesController() {
 
-        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
-        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
-        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
-        employees.add(new Employee(4, "Red", 12, "Male", 20300));
-        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
-        employees.add(new Employee(6, "DM", 12, "Male", 25000));
-        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
+    @Autowired
+    private EmployeeService employeeService;
+
+//    public EmployeesController() {
+//
+//        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
+//        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
+//        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
+//        employees.add(new Employee(4, "Red", 12, "Male", 20300));
+//        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
+//        employees.add(new Employee(6, "DM", 12, "Male", 25000));
+//        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
+//    }
+
+
+    public EmployeesController(EmployeeService employeeService) {
+        //this.employeeService = employeeService;
     }
 
     @GetMapping
     public List<Employee> getAllEmployees() {
-        return employees;
+        return employeeService.getAllEmployees();
     }
 
     @GetMapping(path = "/{employeeId}")
@@ -67,7 +79,7 @@ public class EmployeesController {
                 .filter(employee -> employee.getId().equals(employeeId))
                 .findFirst()
                 .map(employee -> updateEmployeeInformation(employee, employeeToBeUpdated))
-                .get();
+                .orElse(null);
     }
 
     private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
@@ -86,3 +98,4 @@ public class EmployeesController {
           return employee;
     }
 }
+
