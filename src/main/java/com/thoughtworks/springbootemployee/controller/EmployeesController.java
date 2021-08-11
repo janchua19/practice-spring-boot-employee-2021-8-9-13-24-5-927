@@ -33,12 +33,12 @@ public class EmployeesController {
 
 
     public EmployeesController(EmployeeService employeeService) {
-        //this.employeeService = employeeService;
     }
 
     @GetMapping
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
+        //return employees;
     }
 
     @GetMapping(path = "/{employeeId}")
@@ -96,6 +96,14 @@ public class EmployeesController {
             employee.setSalary(employeeToBeUpdated.getSalary());
         }
           return employee;
+    }
+
+    @DeleteMapping("/{employeeId}")
+    public void deleteEmployee (@PathVariable Integer employeeId){
+        employees
+                .stream().filter(employee -> employee.getId().equals(employeeId))
+                .findFirst()
+                .ifPresent(employees :: remove);
     }
 }
 
