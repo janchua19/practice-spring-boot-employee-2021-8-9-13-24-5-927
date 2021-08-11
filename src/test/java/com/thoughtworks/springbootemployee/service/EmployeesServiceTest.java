@@ -144,13 +144,13 @@ public class EmployeesServiceTest {
         assertEquals(updatedEmployeeDetails, actualEmployee);
     }
 
-//    @Test
-//    public void should_delete_employee_when_DeleteEmployee_given_employee_id() {
-//        //given
-//        Integer employeeId = 3;
-//        //when
-//        employeeService.deleteEmployee(employeeId);
-//        //then
-//        verify(employeeRepository).deleteEmployee(3);
-//    }
+    @Test
+    public void should_delete_employee_when_DeleteEmployee_given_employee_id() {
+        //given
+        Integer employeeId = 3;
+        //when
+        employeeService.deleteEmployee(employeeId);
+        //then
+        verify(employeeRepository).deleteEmployee(3);
+    }
 }
