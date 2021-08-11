@@ -63,7 +63,8 @@ public class EmployeesController {
 
     @GetMapping(params = "gender")
     public List<Employee> findEmployeeByGender(@RequestParam(required = true) String gender) {
-        return employees.stream().filter(employee -> employee.getGender().equalsIgnoreCase(gender)).collect(Collectors.toList());
+//        return employees.stream().filter(employee -> employee.getGender().equalsIgnoreCase(gender)).collect(Collectors.toList());
+        return employeeService.findEmployeeByGender("Male");
     }
 
     @PostMapping

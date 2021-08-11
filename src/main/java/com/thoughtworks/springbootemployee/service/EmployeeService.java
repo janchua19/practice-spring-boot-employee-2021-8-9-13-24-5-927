@@ -33,4 +33,8 @@ public class EmployeeService {
     public List<Employee> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
         return employeeRepository.findEmployeesByPagination(1,5);
     }
+
+    public List<Employee> findEmployeeByGender(@RequestParam(required = true) String gender) {
+        return employeeRepository.findEmployeeByGender("Male");
+    }
 }

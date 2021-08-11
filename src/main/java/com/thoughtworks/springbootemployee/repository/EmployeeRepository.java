@@ -30,7 +30,7 @@ public class EmployeeRepository {
     }
 
 
-    public Employee findById(@PathVariable Integer employeeId) {
+    public Employee findById( Integer employeeId) {
         return employees
                 .stream()
                 .filter(employee -> employee.getId().equals(employeeId))
@@ -38,11 +38,15 @@ public class EmployeeRepository {
                 .orElse(null);
     }
 
-    public List<Employee> findEmployeesByPagination(@RequestParam Integer pageIndex, @RequestParam Integer pageSize) {
+    public List<Employee> findEmployeesByPagination(Integer pageIndex, Integer pageSize) {
         return employees
                 .stream()
                 .skip((pageIndex - 1) * pageSize)
                 .limit(pageSize)
                 .collect(Collectors.toList());
+    }
+
+    public List<Employee> findEmployeeByGender(String gender) {
+        return employees.stream().filter(employee -> employee.getGender().equalsIgnoreCase(gender)).collect(Collectors.toList());
     }
 }
