@@ -11,10 +11,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -129,23 +131,26 @@ public class EmployeesServiceTest {
         assertEquals(employees.size(), newEmployee.getId());
     }
 
+    @Test
+    public void should_update_employee_when_UpdateEmployee_given_employee_id() {
+        //given
+        Employee updatedEmployeeDetails = new Employee(3, "Ian", 47, "Female", 200000);
+        given(employeeRepository.updateEmployee(1, updatedEmployeeDetails)).willReturn(updatedEmployeeDetails);
+        //when
+        Employee actualEmployee = employeeService.updateEmployee(1, updatedEmployeeDetails);
+
+        //then
+
+        assertEquals(updatedEmployeeDetails, actualEmployee);
+    }
+
 //    @Test
-//    public void should_update_employee_when_UpdateEmployee_given() {
+//    public void should_delete_employee_when_DeleteEmployee_given_employee_id() {
 //        //given
-//        List<Employee> employees = new ArrayList<>();
-//        employees.add(new Employee(1, "Carms", 21, "Female", 1000));
-//        employees.add(new Employee(2, "Jan", 12, "Male", 2000));
-//        employees.add(new Employee(3, "Ian", 12, "Female", 2000));
-//        employees.add(new Employee(4, "Red", 12, "Male", 20300));
-//        employees.add(new Employee(5, "Adomar", 12, "Male", 23000));
-//        employees.add(new Employee(6, "DM", 12, "Male", 25000));
-//        employees.add(new Employee(7, "Rhea", 12, "Female", 10000));
-//
-//
+//        Integer employeeId = 3;
 //        //when
-//        Employee newEmployee = new Employee(employees.size() + 1, "NewTwo", 22, "Female", 10000);
-//        employees.add(newEmployee);
+//        employeeService.deleteEmployee(employeeId);
 //        //then
-//        assertEquals(employees.size(), newEmployee.getId());
+//        verify(employeeRepository).deleteEmployee(3);
 //    }
 }
