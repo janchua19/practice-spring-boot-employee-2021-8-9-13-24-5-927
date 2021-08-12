@@ -15,8 +15,6 @@ public class CompanyController {
 
     private List<Company> companies = new ArrayList<>();
 
-
-    @Autowired
     private CompanyService companyService;
 
 }

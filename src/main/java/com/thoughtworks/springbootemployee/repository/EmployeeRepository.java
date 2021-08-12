@@ -65,7 +65,7 @@ public class EmployeeRepository {
                 .orElse(null);
     }
 
-    private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) {
+    private Employee updateEmployeeInformation(Employee employee, Employee employeeToBeUpdated) { //should be on the service
         if (employeeToBeUpdated.getName() != null) {
             employee.setName(employeeToBeUpdated.getName());
         }
